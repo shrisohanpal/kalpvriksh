@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useSelector } from 'react-redux'
-import { Text, View, Image } from 'react-native';
+import { Share, View, Image } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
@@ -14,13 +14,34 @@ import Temp from '../screens/tempscreen'
 function CustomDrawerContent(props) {
     return (
         <DrawerContentScrollView {...props}>
-            <DrawerItem
+            <Image style={{ margin: '5%', padding: 0, width: '90%', height: 100, borderRadius: 5 }} source={require('../assets/banners/a.jpg')} />
+
+            {/* <DrawerItem
+                style={{ backgroundColor: 'red', }}
                 label={() => { return (<Image style={{ margin: 0, padding: 0, width: '100%', height: 100 }} source={require('../assets/banners/a.jpg')} />) }}
                 onPress={() => { }} />
+           */}
             <DrawerItemList {...props} />
             <DrawerItem
                 label="Share this App"
-                onPress={() => { }} />
+                onPress={async () => {
+                    try {
+                        const result = await Share.share({
+                            message: 'Kalpvriksh Android App \n https://play.google.com/store/apps/details?id=com.kalpvriksh.android',
+                        });
+                        if (result.action === Share.sharedAction) {
+                            if (result.activityType) {
+                                // shared with activity type of result.activityType
+                            } else {
+                                // shared
+                            }
+                        } else if (result.action === Share.dismissedAction) {
+                            // dismissed
+                        }
+                    } catch (error) {
+                        alert(error.message);
+                    }
+                }} />
         </DrawerContentScrollView>
     );
 }
