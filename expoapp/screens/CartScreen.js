@@ -41,7 +41,7 @@ const CartScreen = ({ route, navigation }) => {
 
     const productId = route.params && route.params.id
 
-    const qty = route.params.qty ? route.params.qty : 1
+    const qty = route.params ? route.params.qty ? route.params.qty : 1 : 1
 
     const dispatch = useDispatch()
 

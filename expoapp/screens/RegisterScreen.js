@@ -8,6 +8,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen'
 const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -22,7 +23,7 @@ const RegisterScreen = ({ navigation }) => {
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      dispatch(register(name, email, password))
+      dispatch(register(name, email, phone, password))
     }
   }
 
@@ -45,6 +46,13 @@ const RegisterScreen = ({ navigation }) => {
           placeholder="Enter Email"
           onChangeText={setEmail}
           value={email}
+        />
+
+        <Text style={styles.text}>Phone Number</Text>
+        <TextInput style={styles.textInput}
+          placeholder="Enter Phone Number"
+          onChangeText={setPhone}
+          value={phone}
         />
 
         <Text style={styles.text}>Password</Text>

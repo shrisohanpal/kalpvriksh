@@ -12,6 +12,7 @@ import Colors from '../constants/Colors'
 const ProfileScreen = ({ navigation }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState(null)
@@ -38,6 +39,7 @@ const ProfileScreen = ({ navigation }) => {
     } else {
       setName(user.name)
       setEmail(user.email)
+      setPhone(user.phone)
     }
   }, [dispatch, userInfo, user, success])
 
@@ -45,7 +47,7 @@ const ProfileScreen = ({ navigation }) => {
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      dispatch(updateUserProfile({ id: user._id, name, email, password }))
+      dispatch(updateUserProfile({ id: user._id, name, email, phone, password }))
     }
   }
 
@@ -72,6 +74,13 @@ const ProfileScreen = ({ navigation }) => {
                   style={styles.textInput}
                   onChangeText={setEmail}
                   value={email}
+                />
+                <Text style={styles.label}>Phone Number</Text>
+                <TextInput
+                  style={styles.textInput}
+                  keyboardType='numeric'
+                  onChangeText={setPhone}
+                  value={phone}
                 />
                 <Text style={styles.label}>Password</Text>
                 <TextInput

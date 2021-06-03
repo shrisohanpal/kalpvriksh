@@ -5,7 +5,7 @@ import generateToken from '../utils/generateToken.js'
 import User from '../models/userModel.js'
 
 // @desc    Auth user & get token
-// @route   POST /api/users/login
+// @route   POST /api/users/login 
 // @access  Public
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body
@@ -17,6 +17,7 @@ const authUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      phone: user.phone,
       isAdmin: user.isAdmin,
       isVendor: user.isVendor,
       token: generateToken(user._id),
@@ -31,7 +32,7 @@ const authUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body
+  const { name, email, phone, password } = req.body
 
   const userExists = await User.findOne({ email })
 
@@ -43,6 +44,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     name,
     email,
+    phone,
     password,
   })
 
@@ -51,6 +53,7 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      phone: user.phone,
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
     })
@@ -71,6 +74,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      phone: user.phone,
       isAdmin: user.isAdmin,
     })
   } else {
@@ -88,6 +92,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     user.name = req.body.name || user.name
     user.email = req.body.email || user.email
+    user.phone = req.body.phone || user.phone
     if (req.body.password) {
       user.password = req.body.password
     }
@@ -98,6 +103,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
+      phone: updatedUser.phone,
       isVendor: updatedUser.isVendor,
       isAdmin: updatedUser.isAdmin,
       token: generateToken(updatedUser._id),
@@ -197,6 +203,7 @@ const updateUser = asyncHandler(async (req, res) => {
   if (user) {
     user.name = req.body.name || user.name
     user.email = req.body.email || user.email
+    user.phone = req.body.phone || user.phone
     user.isVendor = req.body.isVendor
     user.isAdmin = req.body.isAdmin
 
@@ -206,6 +213,7 @@ const updateUser = asyncHandler(async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
+      phone: updatedUser.phone,
       isVendor: updatedUser.isVendor,
       isAdmin: updatedUser.isAdmin,
     })

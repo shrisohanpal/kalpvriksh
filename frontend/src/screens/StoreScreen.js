@@ -27,7 +27,11 @@ const StoreScreen = ({ history }) => {
 
     const registerHandler = () => {
         if (userInfo) {
-            changeState()
+            if (userInfo.phone) {
+                changeState()
+            } else {
+                alert("Submit your Phone Number in your Profile to Sell your Products.")
+            }
         } else {
             history.push('/login?redirect=store')
         }

@@ -23,7 +23,11 @@ const StoreScreen = ({ navigation }) => {
 
     const handleRegister = () => {
         if (userInfo) {
-            navigation.navigate('ConformStore')
+            if (userInfo.phone) {
+                navigation.navigate('ConformStore')
+            } else {
+                Alert.alert("Phone Number Missing!", "Submit your Phone Number in your Profile to Sell your Products.")
+            }
         } else {
             Alert.alert("Login to Continue.", "you are not logged in this app. If you want to continue then you have to login.")
             // navigation.navigate('Login')

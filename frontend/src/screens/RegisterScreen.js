@@ -7,10 +7,10 @@ import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import { register } from '../actions/userActions'
 
-const RegisterScreen = ({ location, history }) =>
-{
+const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [showPass, setShowPass] = useState(false)
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -23,20 +23,18 @@ const RegisterScreen = ({ location, history }) =>
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     if (userInfo) {
       history.push(redirect)
     }
   }, [history, userInfo, redirect])
 
-  const submitHandler = (e) =>
-  {
+  const submitHandler = (e) => {
     e.preventDefault()
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      dispatch(register(name, email, password))
+      dispatch(register(name, email, phone, password))
     }
   }
 
@@ -64,6 +62,16 @@ const RegisterScreen = ({ location, history }) =>
             placeholder='Enter email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId='email'>
+          <Form.Label>Phone Number</Form.Label>
+          <Form.Control
+            type='number'
+            placeholder='Enter phone number'
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
