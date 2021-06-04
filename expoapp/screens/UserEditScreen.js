@@ -12,6 +12,7 @@ const UserEditScreen = ({ route, navigation }) => {
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
     const [isVendor, setIsVendor] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false)
 
@@ -37,6 +38,7 @@ const UserEditScreen = ({ route, navigation }) => {
             } else {
                 setName(user.name)
                 setEmail(user.email)
+                setPhone(user.phone)
                 setIsVendor(user.isVendor)
                 setIsAdmin(user.isAdmin)
             }
@@ -45,7 +47,7 @@ const UserEditScreen = ({ route, navigation }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(updateUser({ _id: userId, name, email, isVendor, isAdmin }))
+        dispatch(updateUser({ _id: userId, name, email, phone, isVendor, isAdmin }))
     }
 
     const deleteHandler = () => {
@@ -74,6 +76,12 @@ const UserEditScreen = ({ route, navigation }) => {
                                     style={styles.textInput}
                                     onChangeText={setEmail}
                                     value={email}
+                                />
+                                <Text style={styles.label}>Phone Number</Text>
+                                <TextInput
+                                    style={styles.textInput}
+                                    onChangeText={setPhone}
+                                    value={phone}
                                 />
                                 <View style={styles.checkBoxContainer}>
                                     <CheckBox value={isVendor}

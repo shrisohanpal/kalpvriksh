@@ -8,12 +8,12 @@ import FormContainer from '../components/FormContainer'
 import { getUserDetails, updateUser } from '../actions/userActions'
 import { USER_UPDATE_RESET } from '../constants/userConstants'
 
-const UserEditScreen = ({ match, history }) =>
-{
+const UserEditScreen = ({ match, history }) => {
   const userId = match.params.id
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [isVendor, setIsVendor] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
 
@@ -29,8 +29,7 @@ const UserEditScreen = ({ match, history }) =>
     success: successUpdate,
   } = userUpdate
 
-  useEffect(() =>
-  {
+  useEffect(() => {
     if (successUpdate) {
       dispatch({ type: USER_UPDATE_RESET })
       history.push('/admin/userlist')
@@ -40,16 +39,16 @@ const UserEditScreen = ({ match, history }) =>
       } else {
         setName(user.name)
         setEmail(user.email)
+        setPhone(user.phone)
         setIsVendor(user.isVendor)
         setIsAdmin(user.isAdmin)
       }
     }
   }, [dispatch, history, userId, user, successUpdate])
 
-  const submitHandler = (e) =>
-  {
+  const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(updateUser({ _id: userId, name, email, isVendor, isAdmin }))
+    dispatch(updateUser({ _id: userId, name, email, phone, isVendor, isAdmin }))
   }
 
   return (
@@ -84,6 +83,16 @@ const UserEditScreen = ({ match, history }) =>
                 placeholder='Enter email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='email'>
+              <Form.Label>Phone Number</Form.Label>
+              <Form.Control
+                type='number'
+                placeholder='Enter phone number'
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
               ></Form.Control>
             </Form.Group>
 

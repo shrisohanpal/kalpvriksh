@@ -19,6 +19,9 @@ const User = ({ navigation, user }) => {
                 <Text style={styles.text}>
                     Email: {user.email}
                 </Text>
+                <Text style={styles.text}>
+                    Phone: {user.phone}
+                </Text>
             </TouchableOpacity>
         </Card>
     )
