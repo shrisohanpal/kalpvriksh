@@ -3,7 +3,7 @@ import { ScrollView, View, Text, ActivityIndicator, TextInput, CheckBox, Button,
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Card from '../components/Card'
-import { getUserDetails, updateUser, deleteUser } from '../actions/userActions'
+import { getUserDetails, updateUser, listUsers, deleteUser } from '../actions/userActions'
 import { USER_UPDATE_RESET } from '../constants/userConstants'
 import Colors from '../constants/Colors'
 
@@ -31,7 +31,8 @@ const UserEditScreen = ({ route, navigation }) => {
     useEffect(() => {
         if (successUpdate) {
             dispatch({ type: USER_UPDATE_RESET })
-            //   history.push('/admin/userlist')
+            dispatch(listUsers())
+            navigation.goBack()
         } else {
             if (!user || !user.name || user._id !== userId) {
                 dispatch(getUserDetails(userId))
@@ -82,6 +83,7 @@ const UserEditScreen = ({ route, navigation }) => {
                                     style={styles.textInput}
                                     onChangeText={setPhone}
                                     value={phone}
+                                    keyboardType='numeric'
                                 />
                                 <View style={styles.checkBoxContainer}>
                                     <CheckBox value={isVendor}

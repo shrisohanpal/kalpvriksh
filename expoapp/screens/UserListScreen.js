@@ -10,9 +10,9 @@ const User = ({ navigation, user }) => {
     return (
         <Card style={styles.card}>
             <TouchableOpacity onPress={() => navigation.navigate('UserEdit', { id: user._id })}>
-                <Text style={styles.text}>
+                {/* <Text style={styles.text}>
                     Id: {user._id}
-                </Text>
+                    </Text> */}
                 <Text style={styles.text}>
                     Name: {user.name}
                 </Text>
