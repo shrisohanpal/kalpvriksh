@@ -52,11 +52,11 @@ const NearMeScreen = ({ navigation }) => {
                 lng: location.coords.longitude
             });
         } catch (err) {
-            Alert.alert(
-                'Could not fetch location!',
-                'Please try again later.',
-                [{ text: 'Okay' }]
-            );
+            /*   Alert.alert(
+                   'Could not fetch location!',
+                   'Please try again later.',
+                   [{ text: 'Okay' }]
+               );*/
         }
         setIsFetching(false);
     };
