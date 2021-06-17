@@ -10,6 +10,8 @@ import { listCategorys } from '../actions/categoryActions'
 import { listShops } from '../actions/shopActions'
 import { listProducts } from '../actions/productActions'
 import Colors from '../constants/Colors'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { loginFromStorage, login } from '../actions/userActions.js';
 
 
 const HomeScreen = ({ navigation }) => {
@@ -27,6 +29,19 @@ const HomeScreen = ({ navigation }) => {
 
     const productList = useSelector(state => state.productList)
     const { loading: loadingProducts, error: errorProducts, products } = productList
+
+    const initFun = async () => {
+        try {
+            var value = await AsyncStorage.getItem('userInfo')
+            if(value){
+                value = JSON.parse(value);
+                dispatch(loginFromStorage(value))
+            }
+        } catch(e) {
+            console.log('Error: ' + e);
+        }
+    }
+    initFun()
 
     useEffect(() => {
         dispatch(listShops)

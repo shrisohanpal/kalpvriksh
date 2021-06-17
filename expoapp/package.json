@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.0",
+    "@react-native-async-storage/async-storage": "^1.13.0",
     "@react-native-community/async-storage": "~1.12.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.11",
@@ -35,6 +36,7 @@
     "react-redux": "^7.2.4",
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "simple-carousel-react-native": "^1.0.2"
   },

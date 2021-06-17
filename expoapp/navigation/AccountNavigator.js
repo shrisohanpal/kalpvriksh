@@ -7,7 +7,7 @@ import ForgetPasswordScreen from '../screens/ForgotPassword'
 import ProfileScreen from '../screens/ProfileScreen'
 import MyOrders from '../screens/MyOrders'
 import Order from '../screens/OrderScreen'
-
+ 
 const Stack = createStackNavigator()
 
 export default function App() {
@@ -21,16 +21,17 @@ export default function App() {
                 headerTintColor: 'white',
                 headerStyle: { backgroundColor: '#007bff' },
             }}>
+
             {userInfo ?
                 <>
                     <Stack.Screen name="Profile" component={ProfileScreen} />
                     <Stack.Screen name="MyOrders" component={MyOrders} />
-                    <Stack.Screen name="Order" component={Order} />
+                    <Stack.Screen name="Order" component={Order} /> 
                 </>
                 :
                 <>
                     <Stack.Screen name="Login" component={LoginScreen} />
-                    <Stack.Screen name="Register" component={RegisterScreen} />
+                    <Stack.Screen name="Register" component={RegisterScreen} /> 
                     <Stack.Screen name="ForgotPassword" component={ForgetPasswordScreen} />
                 </>
             }

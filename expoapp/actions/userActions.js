@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { AsyncStorage } from 'react-native'
+//import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { baseUrl } from '../urls'
 import {
   USER_DETAILS_FAIL,
@@ -37,25 +38,26 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({
       type: USER_LOGIN_REQUEST,
     })
-
     const config = {
       headers: {
         'Content-Type': 'application/json',
       },
     }
-
     const { data } = await axios.post(
       `${baseUrl}/api/users/login`,
       { email, password },
       config
     )
-
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
     })
-
-    await AsyncStorage.setItem('userInfo', JSON.stringify(data))
+    try {
+      await AsyncStorage.setItem('userInfo', JSON.stringify(data))
+     // console.log('AsyncStorage Successfully ');
+    } catch (e) {
+      console.log('AsyncStorage Error in user Actions ' + e);
+    }
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -66,6 +68,14 @@ export const login = (email, password) => async (dispatch) => {
     })
   }
 }
+
+export const loginFromStorage = (data) => async (dispatch) => {    
+    dispatch({
+      type: USER_LOGIN_SUCCESS,
+      payload: data,
+    })
+}
+
 
 export const logout = () => (dispatch) => {
   AsyncStorage.removeItem('userInfo')

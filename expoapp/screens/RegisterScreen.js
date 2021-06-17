@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ScrollView, View, TextInput, CheckBox, Button, Text, ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native'
 import Message from '../components/Message'
 import { register } from '../actions/userActions'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
-
+import Colors from '../constants/Colors'
+ 
 const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')

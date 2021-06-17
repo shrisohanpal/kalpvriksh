@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { useSelector } from 'react-redux'
-import { Share, View, Image } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux'
+import { Share, View, Text, Image } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
@@ -8,7 +8,7 @@ import MenuNavigator from './MenusNavigator.js'
 import StoreNavigator from './StoreNavigator'
 import AdminNavigator from './AdminNavigator'
 import VendorNavigator from './VendorNavigator'
-
+import { USER_LOGIN_SUCCESS } from '../constants/userConstants'
 import Temp from '../screens/tempscreen'
 
 function CustomDrawerContent(props) {
@@ -56,7 +56,7 @@ export default function App() {
     return (
         <NavigationContainer>
             <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />} initialRouteName="Menu">
-                <Drawer.Screen name="Menu" component={MenuNavigator} />
+              <Drawer.Screen name="Menu" component={MenuNavigator} />  
                 <Drawer.Screen name="Seller" component={StoreNavigator} />
                 {userInfo && userInfo.isAdmin && (
                     <Drawer.Screen name="Admin" component={AdminNavigator} />

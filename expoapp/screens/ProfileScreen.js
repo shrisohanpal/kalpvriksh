@@ -32,6 +32,8 @@ const ProfileScreen = ({ navigation }) => {
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy
 
   useEffect(() => {
+    if(userInfo){
+      //console.log(userInfo)
     if (!user || !user.name || success) {
       dispatch({ type: USER_UPDATE_PROFILE_RESET })
       dispatch(getUserDetails('profile'))
@@ -41,6 +43,7 @@ const ProfileScreen = ({ navigation }) => {
       setEmail(user.email)
       setPhone(user.phone)
     }
+  }
   }, [dispatch, userInfo, user, success])
 
   const submitHandler = () => {

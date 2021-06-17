@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ScrollView, View, TextInput, CheckBox, Button, Text, ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native'
 import Message from '../components/Message'
-import { login } from '../actions/userActions'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
+import { login } from '../actions/userActions' 
+import Colors from '../constants/Colors'
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('')

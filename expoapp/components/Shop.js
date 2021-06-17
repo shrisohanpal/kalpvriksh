@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     details: {
         alignItems: 'center',
         height: '17%',
-        padding: 10,
+        padding: 5,
         overflow: 'hidden'
     },
     title: {

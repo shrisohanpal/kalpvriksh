@@ -1,7 +1,9 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { AsyncStorage } from 'react-native'
+import logger from 'redux-logger'
+//import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
     userLoginReducer,
     userRegisterReducer,
@@ -96,12 +98,11 @@ const reducer = combineReducers({
     orderListByVendor: orderListByVendorReducer
 })
 
+const cartItemsFromStorage = [];
+const shippingAddressFromStorage = {};
+const userInfoFromStorage = null;
 
-const cartItemsFromStorage = []
-const userInfoFromStorage = null
-const shippingAddressFromStorage = {}
-
-try {
+/*try {
     cartItemsFromStorage = AsyncStorage.getItem('cartItems')
         ? JSON.parse(AsyncStorage.getItem('cartItems'))
         : []
@@ -115,7 +116,7 @@ try {
         : {}
 } catch (error) {
     console.log(error)
-}
+}*/
 
 const initialState = {
     cart: {
@@ -130,7 +131,7 @@ const middleware = [thunk]
 const store = createStore(
     reducer,
     initialState,
-    composeWithDevTools(applyMiddleware(...middleware))
+    composeWithDevTools(applyMiddleware(...middleware)),
 )
 
 export default store

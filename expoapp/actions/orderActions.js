@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { AsyncStorage } from 'react-native'
+//import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { baseUrl } from '../urls'
 import { CART_CLEAR_ITEMS } from '../constants/cartConstants'
 import {

@@ -8,11 +8,8 @@ import CategoriesNavigator from './CategoriesNavigator'
 import SearchNavigator from './SearchNavigator'
 import NearMeNavigator from './NearMeNavigator'
 import AccountNavigator from './AccountNavigator'
-import NearMeScreen from '../screens/NearMeScreen';
-
 
 const BottomTab = createBottomTabNavigator()
-
 
 export default function App() {
     return (
@@ -44,7 +41,7 @@ export default function App() {
             <BottomTab.Screen name="Categories" component={CategoriesNavigator} />
             <BottomTab.Screen name="Search" component={SearchNavigator} />
             <BottomTab.Screen name="Near Me" component={NearMeNavigator} />
-            <BottomTab.Screen name="Account" component={AccountNavigator} />
+            <BottomTab.Screen name="Account" component={AccountNavigator} /> 
         </BottomTab.Navigator>
     );
 }

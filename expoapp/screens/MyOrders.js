@@ -17,10 +17,12 @@ const MyOrdersScreen = ({ navigation }) => {
 
     const orderListMy = useSelector((state) => state.orderListMy)
     const { loading: loadingOrders, error: errorOrders, orders } = orderListMy
-
+ 
     useEffect(() => {
-        dispatch(getUserDetails('profile'))
-        dispatch(listMyOrders())
+        if(userInfo){
+            dispatch(getUserDetails('profile'))
+            dispatch(listMyOrders())
+        }
     }, [dispatch, userInfo])
 
     return (
